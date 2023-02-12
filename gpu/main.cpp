@@ -11,9 +11,22 @@
 #include <Foundation/Foundation.hpp>
 #include <Metal/Metal.hpp>
 #include <QuartzCore/QuartzCore.hpp>
+#include <iostream>
+#include <CoreVideo/CVDisplayLink.h>
 
 int main()
 {
+    MTL::Device *device = MTL::CreateSystemDefaultDevice();
+
+    // Print the name of the device
+    std::cout << "Device: " << device->name() << std::endl;
+
+    // Check whether it uses unified memory
+    std::cout << "Uses unified memory: " << device->hasUnifiedMemory() << std::endl;
+
+    // Current allocated size
+    std::cout << "Current allocated size: " << device->currentAllocatedSize() << std::endl;
+
+    device->release();
     return 0;
-    
 }
